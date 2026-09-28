@@ -1,0 +1,1 @@
+from src.modules.email_test.models.email_request_model import EmailRequestModel

@@ -1,0 +1,46 @@
+{
+    "responses" : [
+        {   
+            "id": 0,
+            "name": "EMAIL_ALREADY_REGISTERED",
+            "en": {
+                "message": "The email %s is already registered."
+            },
+            "es": {
+                "message": "El correo %s ya está registrado."
+            }
+        },
+        {
+            "id": 1,
+            "name": "EMAIL_REGISTERED",
+            "en": {
+                "message": "Email registered successfully."
+            },
+            "es": {
+                "message": "El correo ha sido registrado satisfactoriamente."
+            }
+        }
+    ],
+    "exceptions" : [
+        {
+            "id": 0,
+            "name": "EMAIL_ALREADY_REGISTERED",
+            "en" : {
+                "detail": "The email %s is already registered."
+            },
+            "es": {
+                "detail": "El correo %s ya está registrado."
+            }
+        },
+        {
+            "id": 1,
+            "name": "INVALID_EMAIL",
+            "en" : {
+                "detail": "Email is not valid."
+            },
+            "es": {
+                "detail": "El correo electrónico es inválido"
+            }
+        }
+    ]
+}
