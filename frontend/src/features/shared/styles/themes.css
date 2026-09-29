@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* ---------------------------------------------------------------------------
+   Shared tokens (non-themed). Same across every theme.
+   --------------------------------------------------------------------------- */
+:root {
+  --font: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Dark (default)
+   --------------------------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+  --bg: #0a1424;
+  --surface: #101c31;
+  --input-bg: #0a1424;
+  --border: #22334f;
+  --border-strong: #34507a;
+  --text: #eaf1fb;
+  --muted: #9bb0ca;
+
+  --fastapi: #05c3a8;
+  --fastapi-light: #7effe8;
+  --fastapi-dark: #04a389;
+
+  --react: #61dafb;
+  --react-light: #c5f0ff;
+  --react-dark: #2eb8e0;
+
+  --error: #ff7a8a;
+  --success: #34d399;
+
+  --halo: rgba(5, 195, 168, 0.15);
+  --grid-line: rgba(97, 218, 251, 0.05);
+  --glow: rgba(97, 218, 251, 0.1);
+  --accent-glow: rgba(97, 218, 251, 0.18);
+  --error-glow: rgba(255, 122, 138, 0.15);
+
+  --orb-green: rgba(5, 195, 168, 0.35);
+  --orb-blue: rgba(97, 218, 251, 0.32);
+  --orb-purple: rgba(139, 92, 246, 0.25);
+
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shine: rgba(255, 255, 255, 0.5);
+
+  --button-text: #05221d;
+  --button-text-muted: rgba(5, 34, 29, 0.35);
+}
+
+/* ---------------------------------------------------------------------------
+   Light
+   --------------------------------------------------------------------------- */
+[data-theme="light"] {
+  --bg: #eef2f9;
+  --surface: #ffffff;
+  --input-bg: #ffffff;
+  --border: #cdd6e5;
+  --border-strong: #8fa1bd;
+  --text: #0a1424;
+  --muted: #4a5b73;
+
+  --fastapi: #037a67;
+  --fastapi-light: #04a389;
+  --fastapi-dark: #025f50;
+
+  --react: #0f7ba3;
+  --react-light: #1a9dcc;
+  --react-dark: #0a5f80;
+
+  --error: #c22c3e;
+  --success: #027a63;
+
+  --halo: rgba(4, 163, 137, 0.12);
+  --grid-line: rgba(26, 157, 204, 0.08);
+  --glow: rgba(26, 157, 204, 0.08);
+  --accent-glow: rgba(26, 157, 204, 0.22);
+  --error-glow: rgba(194, 44, 62, 0.18);
+
+  --orb-green: rgba(4, 163, 137, 0.22);
+  --orb-blue: rgba(26, 157, 204, 0.18);
+  --orb-purple: rgba(139, 92, 246, 0.15);
+
+  --shadow: rgba(10, 20, 36, 0.1);
+  --shine: rgba(255, 255, 255, 0.75);
+
+  --button-text: #ffffff;
+  --button-text-muted: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------------------------------------------------------------------------
+   Violet
+   --------------------------------------------------------------------------- */
+[data-theme="violet"] {
+  --bg: #0b0718;
+  --surface: #171132;
+  --input-bg: #0b0718;
+  --border: #332566;
+  --border-strong: #4a3a85;
+  --text: #f0ebff;
+  --muted: #b0a3d6;
+
+  --fastapi: #a78bfa;
+  --fastapi-light: #ddd6fe;
+  --fastapi-dark: #7c3aed;
+
+  --react: #e879f9;
+  --react-light: #fae8ff;
+  --react-dark: #c026d3;
+
+  --error: #ff8896;
+  --success: #34d399;
+
+  --halo: rgba(139, 92, 246, 0.2);
+  --grid-line: rgba(192, 132, 252, 0.07);
+  --glow: rgba(192, 132, 252, 0.14);
+  --accent-glow: rgba(192, 132, 252, 0.25);
+  --error-glow: rgba(255, 136, 150, 0.18);
+
+  --orb-green: rgba(139, 92, 246, 0.4);
+  --orb-blue: rgba(232, 121, 249, 0.3);
+  --orb-purple: rgba(236, 72, 153, 0.25);
+
+  --shadow: rgba(0, 0, 0, 0.55);
+  --shine: rgba(255, 255, 255, 0.65);
+
+  --button-text: #1a0f2e;
+  --button-text-muted: rgba(26, 15, 46, 0.4);
+}

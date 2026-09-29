@@ -1,0 +1,548 @@
+/* ---------------------------------------------------------------------------
+   Page shell
+   --------------------------------------------------------------------------- */
+.shell {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--bg);
+  transition: background-color 0.3s var(--ease-out);
+}
+
+.shell::after {
+  content: "";
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  margin: -260px 0 0 -260px;
+  z-index: -1;
+  background: radial-gradient(circle, var(--halo), transparent 65%);
+  pointer-events: none;
+}
+
+/* Center the routed content. `pointer-events: none` lets the 3D canvas
+   underneath receive drag events. Interactive descendants opt in. */
+.page {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Background decorations
+   --------------------------------------------------------------------------- */
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: -60px;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 70%);
+  opacity: 0.6;
+}
+
+.bgOrb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  transition: background 0.3s var(--ease-out);
+}
+
+.bgOrbGreen {
+  top: 8%;
+  left: 12%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--orb-green), transparent 70%);
+  transform: translate(
+    calc(var(--mouse-nx, 0) * -22px),
+    calc(var(--mouse-ny, 0) * -22px)
+  );
+}
+
+.bgOrbBlue {
+  bottom: 6%;
+  right: 10%;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, var(--orb-blue), transparent 70%);
+  transform: translate(
+    calc(var(--mouse-nx, 0) * -34px),
+    calc(var(--mouse-ny, 0) * -34px)
+  );
+}
+
+.bgOrbPurple {
+  top: 55%;
+  left: 45%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--orb-purple), transparent 70%);
+  transform: translate(
+    calc(var(--mouse-nx, 0) * -16px),
+    calc(var(--mouse-ny, 0) * -16px)
+  );
+}
+
+.mouseGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--glow),
+    transparent 50%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+.hero {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Title
+   --------------------------------------------------------------------------- */
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2em;
+  margin: 0;
+  font-size: clamp(2.6rem, 9vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  animation: fadeUp 0.8s var(--ease-out) both;
+}
+
+.titleFastapi,
+.titleReact {
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.titleFastapi {
+  background-image: linear-gradient(
+    120deg,
+    var(--fastapi) 0%,
+    var(--fastapi-light) 30%,
+    var(--fastapi) 60%,
+    var(--fastapi-dark) 100%
+  );
+  animation: gradientFlow 6s ease-in-out infinite;
+}
+
+.titleReact {
+  background-image: linear-gradient(
+    120deg,
+    var(--react) 0%,
+    var(--react-light) 30%,
+    var(--react) 60%,
+    var(--react-dark) 100%
+  );
+  animation: gradientFlow 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.titlePlus {
+  color: var(--muted);
+  font-weight: 400;
+  display: inline-block;
+  animation: float 4s ease-in-out infinite;
+  transition: color 0.3s var(--ease-out);
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--muted);
+  font-size: 1.075rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  animation: fadeUp 0.8s var(--ease-out) 0.15s both;
+  transition: color 0.3s var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   Card (form)
+   --------------------------------------------------------------------------- */
+.card {
+  width: 100%;
+  padding: 24px;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 60px var(--shadow);
+  animation: fadeUp 0.8s var(--ease-out) 0.3s both;
+  pointer-events: auto;
+  transition:
+    background-color 0.3s var(--ease-out),
+    border-color 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out);
+}
+
+.card:focus-within {
+  border-color: var(--react);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 60px var(--shadow),
+    0 0 0 4px var(--accent-glow);
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.3s var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   Field / Input / Button
+   --------------------------------------------------------------------------- */
+.field {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.inputWrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  --caret-x: 16px;
+}
+
+.input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  outline: none;
+  transition:
+    color 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out),
+    border-color 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.input::placeholder {
+  color: var(--muted);
+  opacity: 0.75;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--border-strong);
+}
+
+.input:focus-visible {
+  border-color: var(--react);
+  box-shadow:
+    0 0 0 4px var(--accent-glow),
+    0 0 24px -6px var(--accent-glow);
+  caret-color: var(--react);
+}
+
+.input:focus-visible::placeholder {
+  opacity: 0.5;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--error);
+  box-shadow: 0 0 0 4px var(--error-glow);
+  caret-color: var(--error);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Hidden span used to measure text width for the caret-glow position. */
+.inputMirror {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 1rem;
+  white-space: pre;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.inputGlow {
+  position: absolute;
+  top: 50%;
+  left: var(--caret-x, 16px);
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow), transparent 75%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    left 0.18s var(--ease-out),
+    opacity 0.25s var(--ease-out);
+}
+
+.inputWrap:focus-within .inputGlow {
+  opacity: 1;
+}
+
+/* Dynamic class toggled from JS on each keystroke. */
+.typing {
+  animation: inputPulse 0.5s var(--ease-out);
+}
+
+.button {
+  position: relative;
+  flex: 0 0 auto;
+  height: 50px;
+  padding: 0 26px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--button-text);
+  background: linear-gradient(135deg, var(--fastapi), var(--react));
+  background-size: 200% 200%;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    transform 0.15s var(--ease-spring),
+    filter 0.2s var(--ease-out),
+    background-position 0.4s var(--ease-out),
+    padding 0.2s var(--ease-out);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--shine), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+
+.button:hover:not(:disabled) {
+  filter: brightness(1.08);
+  background-position: 100% 50%;
+}
+
+.button:hover:not(:disabled)::before {
+  animation: shine 0.8s var(--ease-out);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--react);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  padding-right: 42px;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.button:disabled::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border: 2px solid var(--button-text-muted);
+  border-top-color: var(--button-text);
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Feedback
+   --------------------------------------------------------------------------- */
+.feedback {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color 0.3s var(--ease-out);
+}
+
+.feedback:not(:empty) {
+  animation: feedbackIn 0.35s var(--ease-out);
+}
+
+.error {
+  color: var(--error);
+}
+
+.success {
+  color: var(--success);
+}
+
+/* ---------------------------------------------------------------------------
+   Credits
+
+   `pointer-events: none` lets drags pass through to the canvas below;
+   the link re-enables clicks for itself.
+   --------------------------------------------------------------------------- */
+.credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  animation: fadeUp 0.8s var(--ease-out) 0.5s both;
+  transition: color 0.3s var(--ease-out);
+}
+
+.credits a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  pointer-events: auto;
+  transition:
+    border-color 0.2s var(--ease-out),
+    color 0.3s var(--ease-out),
+    transform 0.2s var(--ease-spring),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.credits a:hover {
+  color: var(--react);
+  border-color: var(--react);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.credits a:focus-visible {
+  outline: 2px solid var(--react);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .shell {
+    padding: 16px;
+  }
+
+  .field {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    padding: 0 22px;
+  }
+
+  .button:disabled {
+    padding-right: 42px;
+  }
+
+  .bgOrbGreen,
+  .bgOrbBlue,
+  .bgOrbPurple {
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Cursor
+   --------------------------------------------------------------------------- */
+@media (pointer: fine) {
+  :global(*) {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (pointer: fine) {
+  :global(*) {
+    cursor: auto !important;
+  }
+}
