@@ -1,0 +1,83 @@
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!*.example
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / builds
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Tests and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Linters / type checkers
+.mypy_cache/
+.ruff_cache/
+.pyright/
+.dmypy.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================
+# Node / React (Vite)
+# =========================
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Linter cache (oxlint)
+.oxlintcache
+
+# =========================
+# AI assistants (personal settings and permissions)
+# =========================
+.claude/
+CLAUDE.local.md
+
+# =========================
+# Editors and OS
+# =========================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+.DS_Store
+Thumbs.db
