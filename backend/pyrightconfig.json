@@ -1,0 +1,7 @@
+// Type checker of the backend: docker compose exec backend pyright (CI runs it on every push)
+// "standard" catches wrong types without asking to annotate every value that comes from JSON or a library
+{
+  "include": ["src", "tests", "alembic"],
+  "pythonVersion": "3.14",
+  "typeCheckingMode": "standard"
+}
