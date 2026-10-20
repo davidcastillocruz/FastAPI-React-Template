@@ -1,0 +1,42 @@
+{
+    "TOO_MANY_REQUESTS": {
+        "en": {
+            "detail": "Too many requests, wait a moment and try again"
+        },
+        "es": {
+            "detail": "Demasiadas peticiones, espera un momento y vuelve a intentarlo"
+        }
+    },
+    "INTERNAL_SERVER_ERROR": {
+        "en": {
+            "detail": "Something went wrong on the server, try again later"
+        },
+        "es": {
+            "detail": "Algo ha fallado en el servidor, inténtalo más tarde"
+        }
+    },
+    "VALIDATION_ERROR": {
+        "en": {
+            "detail": "Check these fields: %s"
+        },
+        "es": {
+            "detail": "Revisa estos campos: %s"
+        }
+    },
+    "NOT_FOUND": {
+        "en": {
+            "detail": "This page or resource doesn't exist"
+        },
+        "es": {
+            "detail": "Esta página o recurso no existe"
+        }
+    },
+    "METHOD_NOT_ALLOWED": {
+        "en": {
+            "detail": "This action isn't allowed here"
+        },
+        "es": {
+            "detail": "Esta acción no está permitida aquí"
+        }
+    }
+}
