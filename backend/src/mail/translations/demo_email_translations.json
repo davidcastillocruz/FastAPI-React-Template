@@ -1,0 +1,20 @@
+{
+    "DEMO_EMAIL": {
+        "en": {
+            "subject": "Your test email",
+            "title": "It works!",
+            "text": "Your address went through the whole stack: React handed it to FastAPI, PostgreSQL wrote it down and this email reached your inbox.",
+            "board": "Departures from localhost",
+            "status": "Delivered",
+            "footer": "Sent by the FastAPI and React template."
+        },
+        "es": {
+            "subject": "Tu email de prueba",
+            "title": "¡Funciona!",
+            "text": "Tu dirección ha recorrido todo el stack: React se la pasó a FastAPI, PostgreSQL la apuntó y este email ha llegado a tu bandeja.",
+            "board": "Salidas desde localhost",
+            "status": "Entregado",
+            "footer": "Enviado por la plantilla de FastAPI y React."
+        }
+    }
+}
