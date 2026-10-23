@@ -1,0 +1,18 @@
+{
+    "EMAIL_REQUEST_CREATED": {
+        "en": {
+            "message": "Done! Check your inbox in a few seconds"
+        },
+        "es": {
+            "message": "¡Hecho! Revisa tu bandeja de entrada en unos segundos"
+        }
+    },
+    "EMAIL_ALREADY_REQUESTED": {
+        "en": {
+            "detail": "This email has already asked for a test email"
+        },
+        "es": {
+            "detail": "Este email ya ha pedido un email de prueba"
+        }
+    }
+}
