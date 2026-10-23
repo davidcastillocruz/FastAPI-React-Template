@@ -38,5 +38,13 @@
         "es": {
             "detail": "Esta acción no está permitida aquí"
         }
+    },
+    "CONTENT_TOO_LARGE": {
+        "en": {
+            "detail": "What you sent is too big"
+        },
+        "es": {
+            "detail": "Lo que has enviado es demasiado grande"
+        }
     }
 }

@@ -124,7 +124,7 @@ class AppFormatter(logging.Formatter):
 
 
 # Every log of the process (the app's, uvicorn's, the libraries') goes through one handler with AppFormatter.
-# uvicorn's access log is dropped: its lines have no request id
+# uvicorn's access log is dropped: log_requests in main.py writes its own line with the request id
 def setup_logging() -> None:
     use_colors = sys.stderr.isatty() and "NO_COLOR" not in os.environ
 

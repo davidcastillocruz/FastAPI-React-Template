@@ -16,11 +16,12 @@ from src.shared.schemas import ErrorResponse
 # Every error answers {"detail": "..."} translated to the user's language,
 # the same shape FastAPI uses for its own errors
 
-# Errors that Starlette raises by itself, with its default English text:
-# 404 when the route doesn't exist, 405 when it exists but not with that method
+# Errors raised with Starlette's default English text: 404 when the route doesn't exist, 405 when it exists but not
+# with that method, 413 when the body is too big (limit_body_size in main.py)
 ROUTING_ERRORS = {
     status.HTTP_404_NOT_FOUND: "NOT_FOUND",
     status.HTTP_405_METHOD_NOT_ALLOWED: "METHOD_NOT_ALLOWED",
+    status.HTTP_413_CONTENT_TOO_LARGE: "CONTENT_TOO_LARGE",
 }
 
 # The methods a route can have, in the order they're listed in the "Allow" header of a 405
@@ -87,6 +88,7 @@ def allowed_methods(request: Request) -> str:
 
 
 # Registers the error handlers in the app
+# Unhandled errors (500) are handled in the log_requests middleware of main.py
 def setup_error_handlers(app: FastAPI) -> None:
     app.add_exception_handler(RateLimitExceeded, rate_limit_handler)  # pyright: ignore[reportArgumentType]
     app.add_exception_handler(RequestValidationError, validation_error_handler)  # pyright: ignore[reportArgumentType]
