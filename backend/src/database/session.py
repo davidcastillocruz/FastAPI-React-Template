@@ -15,7 +15,7 @@ engine = create_async_engine(
     pool_pre_ping=True,
     # Database errors don't include the query parameters (they would put emails in the logs).
     # The DETAIL line of a PostgreSQL error can still show a value ("Key (email)=(...) already exists"),
-    # so a constraint error has to be caught, not logged with its traceback
+    # so a constraint error has to be caught (like the repeated email in the service), not logged with its traceback
     hide_parameters=True,
 )
 

@@ -13,8 +13,8 @@ type Translations = dict[str, dict[str, dict[str, str]]]
 # Values that fill the %s of each text of a response: {"detail": ("email",)}
 type TextArgs = dict[str, tuple[object, ...]]
 
-# Every *_translations.json inside src/: core/translations has the shared ones, and each part of the app
-# with texts of its own keeps them in a translations/ folder
+# Every *_translations.json inside src/: core/translations has the shared ones, mail/translations the texts
+# of the emails, modules/<module>/translations the ones of each module
 LANGUAGE_DATA: Translations = {}
 
 

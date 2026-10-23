@@ -64,7 +64,7 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
 
 
 # Translates the routing errors above,
-# any other HTTPException keeps FastAPI's default handling
+# any other HTTPException (like the ones raised by the services) keeps FastAPI's default handling
 async def http_error_handler(request: Request, exc: StarletteHTTPException) -> Response:
     name = ROUTING_ERRORS.get(exc.status_code)
     # Only Starlette's own text ("Not Found"...), a custom 404 of ours keeps its message
