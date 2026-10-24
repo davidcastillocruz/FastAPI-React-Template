@@ -1,0 +1,68 @@
+/* Global base styles, the colors come from themes/themes.css */
+
+/* Archivo with its width axis: condensed for the board, wide for the titles */
+@import '@fontsource-variable/archivo/wdth.css';
+
+/* Before the JavaScript sets the theme, the browser's own colors follow the system */
+:root {
+  color-scheme: light dark;
+  --font: 'Archivo Variable', system-ui, sans-serif;
+  /* Strong ease-out for things entering, ease-in-out for things moving on screen */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-color: var(--color-border) var(--color-bg);
+}
+
+/* Visible only to screen readers: real text next to visual pieces like the departures board */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
