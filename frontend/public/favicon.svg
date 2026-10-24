@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A flap of the departures board with the envelope of the home page -->
+  <rect width="32" height="32" rx="7" fill="#1a1a18" />
+  <rect x="6" y="9" width="20" height="14" rx="1.5" fill="#f5c400" stroke="#151513" stroke-width="1.5" />
+  <path d="M6.5 10 16 17.5 25.5 10" fill="none" stroke="#151513" stroke-width="1.5" stroke-linejoin="round" />
+  <path d="M0 16h32" stroke="#000" stroke-opacity="0.55" />
+</svg>
