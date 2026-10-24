@@ -1,0 +1,32 @@
+/* Variables of each theme, set on <html data-theme="...">: any style uses them with var(--name), no imports */
+
+/* Light: printed station signage, black ink on warm paper with signal yellow */
+:root[data-theme='light'] {
+  --color-bg: #efece4;
+  --color-surface: #e4e0d5;
+  --color-text: #151513;
+  --color-text-muted: #5c5a53;
+  --color-border: #c9c4b6;
+  --color-primary: #f5c400;
+  --color-primary-text: #151513;
+  --color-error: #b3261e;
+  /* The departures board is a physical object: dark in both themes */
+  --color-board: #1a1a18;
+  --color-board-cell: #262624;
+  --color-board-text: #f4f1e8;
+}
+
+/* Dark: the station at night, the board glows a little brighter than the walls */
+:root[data-theme='dark'] {
+  --color-bg: #0f0f0e;
+  --color-surface: #1a1a18;
+  --color-text: #f1eee6;
+  --color-text-muted: #a29f95;
+  --color-border: #34332f;
+  --color-primary: #f5c400;
+  --color-primary-text: #151513;
+  --color-error: #ff8a7a;
+  --color-board: #161615;
+  --color-board-cell: #23231f;
+  --color-board-text: #f4f1e8;
+}
