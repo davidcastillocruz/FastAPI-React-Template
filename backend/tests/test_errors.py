@@ -193,7 +193,7 @@ async def test_cors(client, item_routes):
 
 
 # The browser asks first before a POST with JSON from the frontend: without credentials allowed,
-# it wouldn't send the cookies and the frontend's calls with cookies would be blocked
+# it wouldn't send the cookies and the frontend's withCredentials calls would be blocked
 async def test_cors_preflight_allows_the_frontend_with_its_cookies(client, item_routes):
     preflight = {"Access-Control-Request-Method": "POST", "Access-Control-Request-Headers": "content-type"}
     allowed = await client.options("/test-items", headers={"Origin": "http://localhost:5173", **preflight})
