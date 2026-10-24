@@ -1,0 +1,3 @@
+# Not copied into the image: the dependencies of your computer (the image installs its own) and the build output
+node_modules/
+dist/
