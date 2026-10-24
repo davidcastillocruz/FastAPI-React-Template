@@ -13,7 +13,8 @@ export default defineConfig({
     },
   },
   test: {
-    // A fake browser (document, cookies...) for the tests
+    // A fake browser (document, cookies...) for the tests, setup.js resets it after each one
     environment: 'jsdom',
+    setupFiles: ['./src/test/setup.js'],
   },
 });
