@@ -1,0 +1,8 @@
+# Not copied into the image: the local virtualenvs, Python and tool caches and the env files (they come from env_file)
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env*
