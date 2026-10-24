@@ -1,4 +1,4 @@
-/* Global base styles */
+/* Global base styles, the colors come from themes/themes.css */
 
 /* Archivo with its width axis: condensed for the board, wide for the titles */
 @import '@fontsource-variable/archivo/wdth.css';
