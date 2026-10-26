@@ -1,4 +1,4 @@
-# Not copied into the image: the local virtualenvs, Python and tool caches and the env files
+# Not copied into the image: the local virtualenvs, Python and tool caches and the env files (they come from env_file)
 venv/
 .venv/
 __pycache__/

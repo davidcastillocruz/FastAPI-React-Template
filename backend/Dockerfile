@@ -1,4 +1,4 @@
-# Development image of the backend: the code is mounted from your computer
+# Development image of the backend: the code is mounted from your computer (see docker-compose.yml)
 FROM python:3.14-slim
 WORKDIR /app
 

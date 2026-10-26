@@ -18,7 +18,7 @@ ORIGIN_PATTERN = re.compile(r"https?://(\[[0-9a-f:.]+\]|[^/\s:\[\]]+)(:\d+)?")
 # a missing or wrong value stops the app on startup with a clear error.
 # No defaults: every variable must be in the .env files, a forgotten secret can't fall back to a known value
 class Settings(BaseSettings):
-    # The variables come from the environment and from these files.
+    # In Docker the variables come from env_file; outside it, from these files.
     # A variable of the environment wins over the files, and variables without a field are ignored
     model_config = SettingsConfigDict(
         env_file=(BASE_DIR / ".env.api", BASE_DIR / ".env.db"),
@@ -37,7 +37,8 @@ class Settings(BaseSettings):
     # (public docs, debug logs, mail without TLS)
     APP_MODE: Literal["development", "production"]
 
-    # Database: POSTGRES_* come from .env.db
+    # Database: POSTGRES_* come from .env.db, the same file the db container uses
+    # to create the user and the database
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
