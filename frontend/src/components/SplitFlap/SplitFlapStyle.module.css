@@ -1,0 +1,57 @@
+.flaps {
+  display: grid;
+  grid-template-columns: repeat(var(--length), 1fr);
+  gap: 0.12em;
+}
+
+/* One flap: lighter top half, darker bottom half, a hinge line in the middle */
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 0.72;
+  border-radius: 0.14em;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--color-board-cell), white 6%) 50%,
+    var(--color-board-cell) 50%
+  );
+  color: var(--color-board-text);
+  font-weight: 650;
+  font-stretch: 75%;
+  line-height: 1;
+  perspective: 6em;
+  overflow: hidden;
+}
+
+.cell::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1px;
+  background: rgb(0 0 0 / 0.6);
+}
+
+.glyph {
+  white-space: pre;
+}
+
+/* Top half of the previous character falling over the hinge, shown only while it falls */
+.fold {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  white-space: pre;
+  background: color-mix(in oklab, var(--color-board-cell), white 6%);
+  clip-path: inset(0 0 50% 0);
+  transform-origin: 50% 50%;
+  animation: fall 55ms ease-in forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: rotateX(-90deg);
+    filter: brightness(0.55);
+  }
+}
