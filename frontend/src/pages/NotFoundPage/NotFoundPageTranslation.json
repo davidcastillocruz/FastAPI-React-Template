@@ -1,0 +1,22 @@
+{
+  "pageTitle": {
+    "en": "Not found · FastAPI & React",
+    "es": "No encontrada · FastAPI & React"
+  },
+  "status": {
+    "en": "Cancelled",
+    "es": "Cancelado"
+  },
+  "title": {
+    "en": "This destination isn't on the board",
+    "es": "Este destino no está en el panel"
+  },
+  "text": {
+    "en": "Nothing departs from {path}. Check the address or go back to the departures.",
+    "es": "No sale nada desde {path}. Revisa la dirección o vuelve a las salidas."
+  },
+  "back": {
+    "en": "Back to departures",
+    "es": "Volver a las salidas"
+  }
+}
