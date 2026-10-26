@@ -1,0 +1,110 @@
+{
+  "pageTitle": {
+    "en": "Departures from localhost · FastAPI & React",
+    "es": "Salidas desde localhost · FastAPI & React"
+  },
+  "languageLabel": {
+    "en": "Language",
+    "es": "Idioma"
+  },
+  "toDark": {
+    "en": "Night shift",
+    "es": "Turno de noche"
+  },
+  "toLight": {
+    "en": "Day shift",
+    "es": "Turno de día"
+  },
+  "title": {
+    "en": "Departures from localhost",
+    "es": "Salidas desde localhost"
+  },
+  "lede": {
+    "en": "Write an address and dispatch it. React hands it to FastAPI, PostgreSQL writes it down and the email arrives at Mailpit. Every trip ends up on the board.",
+    "es": "Escribe una dirección y despáchala. React se la pasa a FastAPI, PostgreSQL la apunta y el email llega a Mailpit. Cada viaje acaba en el panel."
+  },
+  "destination": {
+    "en": "Destination",
+    "es": "Destino"
+  },
+  "emailPlaceholder": {
+    "en": "name@example.com",
+    "es": "nombre@ejemplo.com"
+  },
+  "send": {
+    "en": "Dispatch",
+    "es": "Despachar"
+  },
+  "sending": {
+    "en": "Dispatching…",
+    "es": "Despachando…"
+  },
+  "invalidEmail": {
+    "en": "That doesn't look like an address. Try one like name@example.com.",
+    "es": "Eso no parece una dirección. Prueba con algo como nombre@ejemplo.com."
+  },
+  "openMailpit": {
+    "en": "Open Mailpit",
+    "es": "Abrir Mailpit"
+  },
+  "routeLabel": {
+    "en": "Route of the email through the stack",
+    "es": "Recorrido del email por el stack"
+  },
+  "departures": {
+    "en": "Departures board",
+    "es": "Panel de salidas"
+  },
+  "page": {
+    "en": "Page {page}",
+    "es": "Página {page}"
+  },
+  "newer": {
+    "en": "Newer",
+    "es": "Recientes"
+  },
+  "older": {
+    "en": "Older",
+    "es": "Anteriores"
+  },
+  "number": {
+    "en": "No.",
+    "es": "Nº"
+  },
+  "time": {
+    "en": "Time",
+    "es": "Hora"
+  },
+  "empty": {
+    "en": "No departures yet",
+    "es": "Aún no hay salidas"
+  },
+  "noOlder": {
+    "en": "No older departures",
+    "es": "No hay salidas antiguas"
+  },
+  "loadError": {
+    "en": "The board couldn't be updated",
+    "es": "No se pudo actualizar el panel"
+  },
+  "tryAgain": {
+    "en": "Try again",
+    "es": "Reintentar"
+  },
+  "builtBy": {
+    "en": "Template by",
+    "es": "Plantilla de"
+  },
+  "designBy": {
+    "en": "Web design made with the help of",
+    "es": "Diseño de la web hecho con ayuda de"
+  },
+  "noConnection": {
+    "en": "The server didn't answer, check that the backend is running",
+    "es": "El servidor no respondió, comprueba que el backend está en marcha"
+  },
+  "unexpected": {
+    "en": "Something unexpected happened",
+    "es": "Ha pasado algo inesperado"
+  }
+}

@@ -1,0 +1,563 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wordmark {
+  white-space: nowrap;
+  font-weight: 750;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+}
+
+.amp {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.languages {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.language,
+.themeButton,
+.pageButton,
+.retry {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms var(--ease-out);
+}
+
+.language {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.language[aria-pressed='true'] {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.themeButton {
+  white-space: nowrap;
+  padding: 7px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.language:active,
+.themeButton:active,
+.pageButton:active:not([aria-disabled='true']),
+.send:active:not([aria-disabled='true']) {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .language:hover:not([aria-pressed='true']),
+  .themeButton:hover,
+  .pageButton:hover:not([aria-disabled='true']) {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+}
+
+/* Hero */
+
+.hero {
+  padding-block: clamp(48px, 9vw, 104px) clamp(40px, 6vw, 72px);
+}
+
+.title {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.intro {
+  display: grid;
+  /* minmax(0, ...): the form and the text shrink with the screen instead of pushing it wider */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+  margin-top: clamp(32px, 5vw, 56px);
+}
+
+@media (min-width: 880px) {
+  .intro {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 64px;
+    align-items: end;
+  }
+}
+
+.lede {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.field {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid var(--color-text);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
+  font-stretch: 90%;
+  caret-color: var(--color-text);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+/* Same focus ring as the rest of the page: the underline of the field alone isn't a clear focus */
+.field:has(.input:focus-visible) {
+  outline: 2px solid var(--color-text);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+.send {
+  display: grid;
+  align-items: center;
+  margin: 6px 0;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-weight: 750;
+  font-stretch: 110%;
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-out),
+    opacity 160ms ease;
+}
+
+.send > span {
+  grid-area: 1 / 1;
+}
+
+.send > span[aria-hidden='true'] {
+  visibility: hidden;
+}
+
+.send[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.result {
+  min-height: 1.55em;
+  margin: 12px 0 0;
+  font-size: 15px;
+}
+
+.result[data-error] {
+  color: var(--color-error);
+}
+
+/* Route: the stack drawn as a transit line */
+
+.route {
+  padding-block: 8px 72px;
+}
+
+.line {
+  position: relative;
+  container-type: inline-size;
+  margin-inline: 28px;
+}
+
+.stations {
+  position: relative;
+  height: 64px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The track between the first and last station */
+.stations::before {
+  content: '';
+  position: absolute;
+  inset: 7px 0 auto;
+  height: 2px;
+  background: var(--color-text);
+}
+
+.station {
+  position: absolute;
+  left: calc(var(--i) / 3 * 100%);
+  top: 0;
+  display: grid;
+  justify-items: center;
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-text);
+  border-radius: 50%;
+  background: var(--color-bg);
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.station[data-lit] .dot {
+  background: var(--color-primary);
+}
+
+.station[data-failed] .dot {
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* Stations light up when the envelope gets to them, not all at once. Switching off has no delay */
+.route[data-trip='sending'] .station[data-lit] .dot {
+  transition-delay: calc(var(--i) * 260ms), 0s;
+}
+
+.route[data-trip='sent'] .station[data-lit] .dot {
+  transition-delay: calc(max(var(--i) - 1, 0) * 380ms), 0s;
+}
+
+.stationName {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.port {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+/* The envelope: starts at React on every send, then travels to its stop */
+.packet {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  translate: calc(var(--stop) / 3 * 100cqi - 50%) 0;
+  transition: translate 900ms var(--ease-in-out);
+
+  @starting-style {
+    translate: -50% 0;
+  }
+}
+
+.route[data-trip='sending'] .packet {
+  transition: translate 520ms var(--ease-out);
+}
+
+.envelope {
+  display: block;
+  width: 22px;
+}
+
+.envelope svg {
+  display: block;
+  fill: var(--color-primary);
+  stroke: var(--color-primary-text);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.route[data-trip='sending'] .envelope {
+  animation: bob 600ms ease-in-out infinite alternate;
+}
+
+.route[data-error] .envelope svg {
+  fill: var(--color-error);
+}
+
+.route[data-error] .envelope {
+  animation: refuse 420ms var(--ease-out) 1;
+}
+
+@keyframes bob {
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes refuse {
+  20% {
+    transform: translateX(-5px) rotate(-6deg);
+  }
+  45% {
+    transform: translateX(4px) rotate(4deg);
+  }
+  70% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .wordmark {
+    font-size: 14px;
+  }
+
+  .controls {
+    gap: 4px;
+  }
+
+  .language {
+    padding: 4px 8px;
+  }
+
+  .themeButton {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .stationName {
+    font-size: 12px;
+  }
+
+  .port {
+    font-size: 11px;
+  }
+}
+
+/* Departures board */
+
+.departures {
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.boardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 16px;
+}
+
+.boardTitle {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.03em;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pageNumber {
+  margin-right: 8px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+.pageButton {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pageButton[aria-disabled='true'],
+.retry[aria-disabled='true'] {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.listError {
+  margin: 0 0 16px;
+  color: var(--color-error);
+}
+
+.retry {
+  padding: 0;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.boardFrame {
+  container-type: inline-size;
+  padding: clamp(12px, 2.4vw, 28px);
+  border-radius: 12px;
+  border: 1px solid rgb(255 255 255 / 0.06);
+  background: var(--color-board);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.2),
+    0 18px 40px -16px rgb(0 0 0 / 0.45);
+}
+
+.board {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 0.4em;
+  margin-block: -0.4em;
+  font-size: 1.6cqi;
+}
+
+.board th {
+  padding: 0 0 0.25em;
+  font-size: max(11px, 0.62em);
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.board td {
+  padding: 0;
+}
+
+.board th:not(:last-child),
+.board td:not(:last-child) {
+  padding-right: 1.1em;
+}
+
+/* Narrow boards: number and time on one line, the destination below them */
+@container (max-width: 640px) {
+  .board {
+    display: block;
+    margin-block: 0;
+    font-size: 3.1cqi;
+  }
+
+  .board thead,
+  .board colgroup {
+    display: none;
+  }
+
+  .board tbody,
+  .board tr {
+    display: grid;
+  }
+
+  .board tbody {
+    gap: 1.1em;
+  }
+
+  /* 6 + 12 + 10 = the 28 cells of the destination: every cell has the same size.
+     The number uses 5 of its 6, the empty one separates it from the time */
+  .board tr {
+    grid-template-columns: 6fr 12fr 10fr;
+    gap: 0.35em 0.12em;
+  }
+
+  .board td:first-child {
+    padding-right: calc(100% / 6);
+  }
+
+  .board td:nth-child(2) {
+    padding-right: 0;
+  }
+
+  .board td:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-block: 24px 32px;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packet,
+  .route[data-trip='sending'] .packet {
+    transition: none;
+  }
+
+  /* The same selectors as the animations: a shorter one loses against them */
+  .route[data-trip='sending'] .envelope,
+  .route[data-error] .envelope {
+    animation: none;
+  }
+}

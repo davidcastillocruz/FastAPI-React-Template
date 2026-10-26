@@ -92,5 +92,5 @@ function SplitFlap({ text, length, delay = 0 }) {
   );
 }
 
-// memo: a parent that re-renders doesn't redraw the cells, only a new text does
+// memo: the page re-renders on every key typed in its form, the board only when its text changes
 export default memo(SplitFlap);

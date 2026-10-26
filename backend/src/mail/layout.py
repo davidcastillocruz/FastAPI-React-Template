@@ -1,6 +1,7 @@
 from html import escape
 
-# Colors of the demo: station signage, black ink on warm paper with signal yellow, and the dark departures board
+# Colors of the light theme of the frontend (frontend/src/themes/themes.css):
+# station signage, black ink on warm paper with signal yellow, and the dark departures board
 PAPER = "#efece4"
 INK = "#151513"
 MUTED = "#5c5a53"
@@ -13,7 +14,7 @@ BOARD_TEXT = "#f4f1e8"
 # Email clients rarely load web fonts: Archivo if it's installed, a narrow system font otherwise
 FONT = "Archivo, 'Arial Narrow', Arial, Helvetica, sans-serif"
 
-# The stops of the departures board: the parts of the stack the email goes through
+# The stops of the departures board, the same line as the home page
 STATIONS = ("React", "FastAPI", "PostgreSQL", "Mailpit")
 
 # Email clients only render tables and inline styles reliably: every piece below is built with them
@@ -30,7 +31,7 @@ def _flaps(text: str) -> str:
     return f'<table role="presentation" cellpadding="0" cellspacing="3"><tr>{cells}</tr></table>'
 
 
-# The line of the stations, every one lit: the email got to the last one
+# The line of the home page with every station lit: the email got to the last one
 def _route() -> str:
     # The piece of track on one side of a station: transparent before the first one and after the last one
     def track(visible: bool) -> str:
