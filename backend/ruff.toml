@@ -1,4 +1,4 @@
-# Linter of the backend: ruff check
+# Linter of the backend: docker compose exec backend ruff check (CI runs it on every push)
 # ruff check --fix fixes most of what it finds (unused imports, import order, old syntax...)
 target-version = "py314"
 line-length = 120

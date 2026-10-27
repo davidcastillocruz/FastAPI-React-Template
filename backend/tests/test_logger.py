@@ -142,7 +142,7 @@ def test_setup_logging(capsys, monkeypatch, restore_logging):
     assert "GET / 200" not in err and "SELECT 1" not in err
 
 
-# A terminal gets colors, a file or a pipe gets plain lines
+# Docker's tty: true gives the backend a terminal, a file or a pipe (CI) gets plain lines
 @pytest.mark.parametrize(
     "terminal, no_color, colored", [(True, False, True), (True, True, False), (False, False, False)],
 )

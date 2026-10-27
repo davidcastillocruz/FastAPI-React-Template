@@ -29,7 +29,7 @@ def languages():
     setup_language_system()
 
 
-# Creates the test database once, with the tables of the models.
+# Creates the test database once, with the tables of the models (CI checks that the migrations match them).
 # Only the tests that call the API need it (through client), the unit tests run without PostgreSQL
 @pytest.fixture(scope="session")
 async def database():
