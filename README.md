@@ -16,7 +16,7 @@
 
 <img src="docs/demo.gif" alt="The example page: an email is dispatched, travels through the stack and lands on the departures board, then the page switches to the dark theme and to Spanish" width="800">
 
-[Features](#features) · [Quick start](#quick-start) · [Starting a project](#starting-a-project) · [Project structure](#project-structure) · [Backend guide](#backend-guide) · [Frontend guide](#frontend-guide) · [Testing](#testing) · [Useful commands](#useful-commands) · [Conventions](#conventions) · [Known limitations](#known-limitations)
+[Features](#features) · [Quick start](#quick-start) · [Starting a project](#starting-a-project) · [Working with Claude Code](#working-with-claude-code) · [Project structure](#project-structure) · [Backend guide](#backend-guide) · [Frontend guide](#frontend-guide) · [Testing](#testing) · [Useful commands](#useful-commands) · [Conventions](#conventions) · [Known limitations](#known-limitations)
 
 </div>
 
@@ -167,6 +167,16 @@ Until the app has its first table, repository and route, three tests fail: that 
 
 If the demo already ran on your computer, `docker compose down -v` deletes its database.
 
+## Working with Claude Code
+
+[`CLAUDE.md`](CLAUDE.md) is what makes [Claude Code](https://claude.com/claude-code) work on this code the way it was written: Claude reads it by itself when it starts in the repository, so there is nothing to paste. It holds the conventions of each layer, how to name things, what has to be checked before calling something done and how commits are written. The rule that comes first is that the code that exists is the convention: Claude copies the closest case and asks before bringing in a new pattern.
+
+Keep it committed and alive in your project:
+
+- Say in it what is specific to your project (its modules, its decisions), next to what comes from the template.
+- When you settle a new convention, write it down there in the same change: what isn't in that file doesn't reach the next session.
+- If it stops matching the code, the code wins and the file gets fixed.
+
 ## Project structure
 
 ```
@@ -205,6 +215,7 @@ If the demo already ran on your computer, `docker compose down -v` deletes its d
 │       ├── features/            # big features with their own pages, components and hooks
 │       └── test/                # setup of the frontend tests
 ├── docs/                    # the GIF of this README
+├── CLAUDE.md                # how to work on the code, read by Claude Code
 ├── LICENSE
 ├── .github/workflows/ci.yml
 └── docker-compose.yml
@@ -312,6 +323,8 @@ Where the folder goes:
 - `src/components/`: a piece used by several pages (a button, a field).
 - `src/pages/`: a page on its own (the home page, the 404).
 - `src/features/<area>/`: a big feature with several pages, components and hooks of its own (`features/auth/pages/LoginPage/`, `features/auth/components/LoginForm/`). What only that feature uses stays inside it; what two features share moves up to `components/` or `hooks/`.
+
+The rest of the rules (accessibility, animations, tests) are in the *Frontend* section of [`CLAUDE.md`](CLAUDE.md).
 
 ### Translations
 
@@ -432,7 +445,7 @@ On every push and pull request, GitHub Actions runs three jobs in parallel:
 - **Imports, frontend**: packages (alphabetically, so `axios` goes before `react`), then `@/` imports, then relative ones (in a component, `./NameStyle.module.css` and `./NameTranslation.json`), one blank line between groups and never `../`.
 - **Format**: backend with double quotes, trailing commas and 120 characters per line (ruff); frontend with single quotes. There is no formatter, follow the surrounding code.
 - **Comments**: above the line they explain, saying why rather than what, descriptive and without first person. No commented-out code and no `TODO` without context.
-- **Commits**: one per change, conventional commits with a broad title and a short visual description by sections.
+- **Commits**: one per change, conventional commits with a broad title and a short visual description by sections. The format and the rest of the conventions of each layer are in [`CLAUDE.md`](CLAUDE.md).
 - **CSS**: colors from the variables of `themes.css` (only neutral shadows, highlights and the edge of the dark board are written as `rgb()` or `white`), one CSS module per component, `clamp()` for fluid sizes (headings, page spacing), `px` for the rest of the text.
 - **Ignores**: every `# noqa`, `# pyright: ignore[...]` and `// oxlint-disable-next-line` in the code is needed (each one was checked by removing it and running the tool). Remove one only after checking that the tool stays green without it.
 
@@ -441,6 +454,7 @@ On every push and pull request, GitHub Actions runs three jobs in parallel:
 - **Only from your computer**: every port of `docker-compose.yml` is published on `127.0.0.1`. To open the web from another device, publish the ports of `frontend` and `backend` without `127.0.0.1:`, set `VITE_API_URL` to the backend's address as that device sees it, and add the web's origin to `CORS_ORIGINS`; opened by a name and not an IP, Vite also needs that name in `server.allowedHosts` of `vite.config.js`. The Mailpit link of the demo (`frontend/src/pages/HomePage/HomePage.jsx`) is written as `http://localhost:8025`.
 - **Rate limit per IP**: the limit is per client IP as the backend sees it. Behind a reverse proxy every user would share the proxy's IP, unless that IP is in `FORWARDED_ALLOW_IPS`: uvicorn then takes the client's from `X-Forwarded-For`. In Docker every request from your computer arrives from the gateway of the Docker network (like `172.18.0.1`), so all your browser tabs share one counter.
 - **Offset pagination**: a request saved between two page loads moves the next page one row, so a row can show twice. The order itself is stable (newest first, ties broken by id).
+- **Dependency audit** (2026-11-05): OSV reports nothing for the 221 packages pinned in `requirements.txt` and `package-lock.json`.
 - **slowapi on Python 3.14**: pytest shows a `DeprecationWarning` from slowapi (`asyncio.iscoroutinefunction`). It comes from the library and doesn't affect the app until Python 3.16.
 
 ## License
