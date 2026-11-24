@@ -1,6 +1,6 @@
 # FastAPI-React-Template
 
-Full-stack base to clone and build on: FastAPI (async SQLAlchemy, Alembic, PostgreSQL, Redis rate limiting, email) and React + Vite, all in Docker. The only feature is a demo, `modules/demo/`: it is the reference for every new module, and it is removed when a real project starts (see the README, *Starting a project*).
+Full-stack base to clone and build on: FastAPI (async SQLAlchemy, Alembic, PostgreSQL, Redis rate limiting, email) and React + Vite, all in Docker. The only feature is a demo, `modules/demo/`: it is the reference for every new module, and it is removed when a real project starts ([`STARTING.md`](STARTING.md)).
 
 This file says how to work on the template and on anything built from it. The README has the setup and the guides for people.
 

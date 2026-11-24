@@ -130,42 +130,7 @@ Saving a file reloads the API (`backend/src`) or the page (`frontend/src`). Two 
 
 ## Starting a project
 
-To build a real app on the template, clone it, keep its history or start a new one, and take the demo out. These are the pieces that belong to it:
-
-**Backend**, delete:
-
-- `src/modules/demo/`, `src/api/routers/demo_router.py` and `src/mail/translations/demo_email_translations.json`
-- `alembic/versions/2026_10_23_1946-535dc1133489_create_email_requests.py`, and put a `.gitkeep` in the folder until the first migration: Alembic needs it to exist
-- `tests/test_email_requests.py`
-
-**Backend**, edit:
-
-- `src/main.py`: the import and the `include_router` of `demo_router`
-- `src/database/models.py`: the import of `EmailRequest`
-- `src/mail/emails.py`: `build_demo_email` and its imports, the first email of the app goes there
-- `src/mail/layout.py`: the colors, the font and the header are the look of the demo, change them for yours and keep `render_email`. The `board` option is its departures board: remove it with `_flaps`, `_route`, `STATIONS` and the colors only the board uses (`SIGNAL`, `BOARD`, `BOARD_CELL`, `BOARD_TEXT`)
-- `src/core/limiter.py`: `EMAIL_LIMIT` is the limit of the demo, it stays if a route of the app sends emails
-- `tests/conftest.py`: the import of `email_request_service` and the `sent_emails` fixture, which comes back when a service sends emails
-- `tests/test_email.py`: the tests and imports of `build_demo_email`, and the `flaps` helper with its `import re`
-- `tests/test_limiter.py`: the rows of `demo_router`, which are replaced by the routes of the app
-- `tests/test_database.py`: `test_database_errors_hide_the_parameters` inserts into `email_requests`, point it to a table of yours with a unique column
-
-Until the app has its first table, repository and route, three tests fail: that one, `test_no_repository_commits` and `test_no_route_goes_without_a_limit`. The last two refuse to pass with nothing to check, and all of them turn green with the first module.
-
-**Frontend**:
-
-- Delete `src/components/SplitFlap/` and write your own `HomePage` and `NotFoundPage`, which use it
-- `@fontsource-variable/archivo` in `package.json`, `index.css` and `themes.css` are the look of the demo: replace them with yours
-- `src/utils/api.js` has the demo in a comment
-
-**The project itself**:
-
-- `APP_TITLE`, `APP_DESCRIPTION` and the languages in `backend/.env.api`, `MAIN_LANGUAGE` and `AVAILABLE_LANGUAGES` in `tests/conftest.py`, and `LANGUAGES` and `MAIN_LANGUAGE` in `frontend/src/languages/languages.js`
-- If the languages change, also `src/core/translations/errors_translations.json` (one entry per language) and the tests that expect those texts and languages: `tests/test_errors.py` and `tests/test_languages.py`
-- The values of `env` in `.github/workflows/ci.yml`, the name in `frontend/package.json`, the title, description and `lang` of `frontend/index.html`, and `frontend/public/favicon.svg`
-- This README, `docs/demo.gif` and `LICENSE`
-
-If the demo already ran on your computer, `docker compose down -v` deletes its database.
+[`STARTING.md`](STARTING.md) takes you from this template to a new project: create the repository, take the demo out file by file, name the project and choose its languages, put in your design, build the first page and the first module, and make [`CLAUDE.md`](CLAUDE.md) your project's.
 
 ## Working with Claude Code
 
@@ -216,6 +181,7 @@ Keep it committed and alive in your project:
 │       └── test/                # setup of the frontend tests
 ├── docs/                    # the GIF of this README
 ├── CLAUDE.md                # how to work on the code, read by Claude Code
+├── STARTING.md              # from the template to a new project
 ├── LICENSE
 ├── .github/workflows/ci.yml
 └── docker-compose.yml
